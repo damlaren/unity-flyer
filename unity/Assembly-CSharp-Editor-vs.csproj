@@ -61,6 +61,9 @@
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>C:/Projects/unity-flyer/unity/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>C:/Projects/unity-flyer/unity/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
