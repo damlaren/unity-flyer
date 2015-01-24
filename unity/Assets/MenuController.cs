@@ -13,5 +13,8 @@ public class MenuController : MonoBehaviour {
 		if (Input.GetKey (KeyCode.Escape)) {
 			Application.LoadLevel(0);
 		}
+		else if (Input.GetKeyDown (KeyCode.C)) {
+			Camera.main.orthographic = !Camera.main.orthographic;
+		}
 	}
 }
