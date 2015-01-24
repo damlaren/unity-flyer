@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AnimateScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MenuController.cs">
     <Files>
       <File FileName="Assets\AnimateScript.cs" Line="14" Column="18" />
+      <File FileName="Assets\MenuController.cs" Line="14" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
