@@ -14,7 +14,10 @@ public class MenuController : MonoBehaviour {
 			Application.LoadLevel(0);
 		}
 		else if (Input.GetKeyDown (KeyCode.C)) {
-			Camera.main.orthographic = !Camera.main.orthographic;
+			Camera projCamera = GameObject.Find ("Main Camera").camera;
+			Camera orthoCamera = GameObject.Find ("Ortho Camera").camera;
+			projCamera.enabled = !projCamera.enabled;
+			orthoCamera.enabled = !orthoCamera.enabled;
 		}
 	}
 }
