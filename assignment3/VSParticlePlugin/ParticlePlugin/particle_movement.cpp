@@ -42,9 +42,9 @@ extern "C"
 	}
 
 	/** Copy vector vin of length n to vout. */
-//	void copy(float* vout, const float* vin, int n) {
-//		memcpy(vout, vin, n * sizeof(float));
-//	}
+	void copy(float* vout, const float* vin, int n) {
+		memcpy(vout, vin, n * sizeof(float));
+	}
 
 	/**
 	  * Model a flock of birds.
