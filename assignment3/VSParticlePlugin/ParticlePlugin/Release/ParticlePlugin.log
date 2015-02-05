@@ -1,5 +1,5 @@
-﻿Build started 2/5/2015 11:39:28 AM.
-     1>Project "C:\Projects\unity-flyer\assignment3\VSParticlePlugin\ParticlePlugin\ParticlePlugin.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 2/5/2015 1:06:56 PM.
+     1>Project "C:\Projects\unity-flyer\assignment3\VSParticlePlugin\ParticlePlugin\ParticlePlugin.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D PARTICLEPLUGIN_EXPORTS /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt particle_movement.cpp
          particle_movement.cpp
@@ -9,8 +9,8 @@
          Generating code
          Finished generating code
          ParticlePlugin.vcxproj -> C:\Projects\unity-flyer\assignment3\VSParticlePlugin\Release\ParticlePlugin.dll
-     1>Done Building Project "C:\Projects\unity-flyer\assignment3\VSParticlePlugin\ParticlePlugin\ParticlePlugin.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Projects\unity-flyer\assignment3\VSParticlePlugin\ParticlePlugin\ParticlePlugin.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.38
+Time Elapsed 00:00:00.31
