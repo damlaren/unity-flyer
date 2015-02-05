@@ -1,5 +1,6 @@
 #define EXPORT_API __declspec(dllexport) // Visual Studio needs to annotate exported functions with this
 #include <cmath>
+#include <cstdlib>
 #include <string.h>
 
 extern "C"
@@ -50,7 +51,7 @@ extern "C"
 	  * Model a flock of birds.
 	  * particle_states: [x; v] for this particle.
 	  * goal_position: [x] goal position.
-	  * weights: 5 of them, respectively for: desired motion, separation, alignment, cohesion, avoidance
+	  * weights: 6 of them, respectively for: desired motion, separation, alignment, cohesion, avoidance, randomness
 	  * dt: timestep
 	  */
     const EXPORT_API void flock(float* particle_states, float* goal_position, float* weights, float dt)
@@ -70,9 +71,19 @@ extern "C"
 		subtract(desiredDirectionDifference, desiredDirection, currentDirection, 3);
 		multiply(desiredDirectionForce, desiredDirectionDifference, desiredDirectionWeight, 3);
 
+		// Force 5: Avoidance is ignored
+
+		// Force 6: Random variation
+		float randomForce[3];
+		float randomWeight = weights[5];
+		for (int d = 0; d < 3; d++) {
+			randomForce[d] = (static_cast<float>(rand() % 1000) / 1000.0f - 0.5f) * randomWeight;
+		}
+
 		// Add all the forces together at the end, transform to impulse.
 		float totalImpulse[3];
 		add(totalImpulse, totalImpulse, desiredDirectionForce, 3);
+		add(totalImpulse, totalImpulse, randomForce, 3);
 		multiply(totalImpulse, totalImpulse, dt, 3);
 
 		// Update velocity and position.

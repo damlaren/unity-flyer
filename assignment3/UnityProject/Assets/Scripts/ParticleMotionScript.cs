@@ -15,8 +15,8 @@ public class ParticleMotionScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		particle_states = new float[6];
-		goal_position = new float[3] {25, 8, 0};
-		weights = new float[5] {100, 1, 1, 1, 1};
+		goal_position = new float[3] {25, 7, 0};
+		weights = new float[6] {100, 1, 1, 1, 1, 100};
 
 		////position
 		for(int d=0; d < 3;d++) particle_states[d] = transform.position[d];
