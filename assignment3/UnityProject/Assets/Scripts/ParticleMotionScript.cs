@@ -7,7 +7,7 @@ public class ParticleMotionScript : MonoBehaviour {
 	float[] particle_states;
 	float[] center;
 
-	[DllImport("ParticlePlugin")]
+	[DllImport("Assets/Plugins/ParticlePlugin")]
 	private static extern void centralGravity(float[] particle_states,float[] center,float dt);
 
 	// Use this for initialization
