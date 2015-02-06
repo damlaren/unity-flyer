@@ -107,12 +107,17 @@ extern "C"
 			multiply(separation_vector, separation_vector, scaling, 3);
 			add(separation_force, separation_force, separation_vector, 3);
 
+			// Force 3: Drag towards average velocity of neighbors
+			float alignment_vector[3];
+			subtract(alignment_vector, neighbor_velocity, v, 3);
+			add(alignment_force, alignment_force, alignment_vector, 3);
+
 			// Force 4: Cohesion; move towards local average
 			float cohesion_vector[3];
 			subtract(cohesion_vector, neighbor_position, x, 3);
-			float cohesion_distance = length(cohesion_vector, 3);
 			add(cohesion_force, cohesion_force, cohesion_vector, 3);
 		}
+		multiply(alignment_force, alignment_force, alignment_weight / num_neighbors, 3);
 		multiply(cohesion_force, cohesion_force, cohesion_weight / num_neighbors, 3);
 
 		// Force 5: Avoidance is ignored
@@ -128,6 +133,7 @@ extern "C"
 		float totalImpulse[3];
 		add(totalImpulse, totalImpulse, desiredDirectionForce, 3);
 		add(totalImpulse, totalImpulse, separation_force, 3);
+		add(totalImpulse, totalImpulse, alignment_force, 3);
 		add(totalImpulse, totalImpulse, cohesion_force, 3);
 		add(totalImpulse, totalImpulse, randomForce, 3);
 		multiply(totalImpulse, totalImpulse, dt, 3);

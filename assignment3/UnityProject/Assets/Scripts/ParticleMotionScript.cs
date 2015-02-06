@@ -21,7 +21,7 @@ public class ParticleMotionScript : MonoBehaviour {
 		switch_time = 0;
 
 		// weights: goal, separation, alignment, cohesion, avoidance, random
-		weights = new float[6] {0.5f, 20.0f, 10, 1, 0, 10};
+		weights = new float[6] {1, 20, 1, 1, 0, 10};
 
 		////position
 		for(int d=0; d < 3;d++) particle_states[d] = transform.position[d];
