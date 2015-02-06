@@ -14,7 +14,7 @@ public class SpawnerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		object_prefabs = new GameObject[1];
-		object_prefabs [0] = Resources.Load<GameObject> ("Prefabs/particle_prefab");
+		object_prefabs [0] = Resources.Load<GameObject> ("Prefabs/boid_prefab");
 		number = 0;
 
 		InvokeRepeating("Spawn", spawnDelay, spawnTime);

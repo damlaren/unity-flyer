@@ -9,6 +9,8 @@ public class ParticleMotionScript : MonoBehaviour {
 	public float[] weights;
 	float switch_time;
 
+	public const float PATH_RADIUS = 20;
+
 	[DllImport("Assets/Plugins/ParticlePlugin")]
 	private static extern void flock(float[] particle_states, float[] goal_position,
 	                                 float[] neighbor_positions, float[] neighbor_velocities,
@@ -17,11 +19,11 @@ public class ParticleMotionScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		particle_states = new float[6];
-		goal_position = new float[3] {20, 7, 0};
+		goal_position = new float[3] {0, 13, 40};
 		switch_time = 0;
 
 		// weights: goal, separation, alignment, cohesion, avoidance, random
-		weights = new float[6] {1, 20, 1, 1, 0, 10};
+		weights = new float[6] {1, 50, 0.5f, 1, 0, 2};
 
 		////position
 		for(int d=0; d < 3;d++) particle_states[d] = transform.position[d];
@@ -50,16 +52,12 @@ public class ParticleMotionScript : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		switch_time += Time.deltaTime;
-		if (switch_time > 5.0f) {
-			if (goal_position[0] == 20) {
-				goal_position[0] = 10;
-			}
-			else {
-				goal_position[0] = 20;
-			}
-			switch_time = 0;
-		}
+		// Update goal position
+		float t = Time.time / 5.0f;
+		float cos = (float) Math.Cos (t);
+		float sin = (float) Math.Sin (t);
+		goal_position [0] = PATH_RADIUS * cos;
+		goal_position [2] = PATH_RADIUS * sin + 50;
 
 		// Find closest neighbors, ignoring direction.
 		int max_closest_neighbors = 4;
@@ -95,6 +93,10 @@ public class ParticleMotionScript : MonoBehaviour {
 		       neighbors_visited, 5.0f, weights, dt);
 		transform.position = new Vector3 (particle_states[0], particle_states[1],
 		                                  particle_states[2]);
-		// TODO update orientation too
+		Vector3 newDirection = new Vector3 (particle_states [3], particle_states [4],
+		                                    particle_states [5]);
+		transform.forward = -newDirection.normalized;
+		//transform.up = new Vector3 (0, 1, 0);
+		//transform.right = Vector3.Cross (transform.forward, transform.up);
 	}
 }

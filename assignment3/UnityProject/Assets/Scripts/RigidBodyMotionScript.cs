@@ -7,13 +7,13 @@ public class RigidBodyMotionScript : MonoBehaviour {
 	private float[] rigid_body_states;
     private IntPtr rigid_body = IntPtr.Zero;
 
-	[DllImport ("RigidBodyPlugin")]
+	[DllImport ("Assets/Plugins/RigidBodyPlugin")]
 	private static extern void advanceCube(ref IntPtr rigid_body,float[] rigid_body_states,float dt);
 
-	[DllImport ("RigidBodyPlugin")]
+	[DllImport ("Assets/Plugins/RigidBodyPlugin")]
 	private static extern void createCube (ref IntPtr rigid_body,float[] rigid_body_states);
 
-	[DllImport ("RigidBodyPlugin")]
+	[DllImport ("Assets/Plugins/RigidBodyPlugin")]
 	private static extern void destroyCube (ref IntPtr rigid_body);
 	
 	// Use this for initialization
