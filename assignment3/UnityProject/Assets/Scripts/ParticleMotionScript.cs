@@ -12,14 +12,16 @@ public class ParticleMotionScript : MonoBehaviour {
 	[DllImport("Assets/Plugins/ParticlePlugin")]
 	private static extern void flock(float[] particle_states, float[] goal_position,
 	                                 float[] neighbor_positions, float[] neighbor_velocities,
-	                                 int num_neighbors, float[] weights, float dt);
+	                                 int num_neighbors, float max_speed, float[] weights, float dt);
 
 	// Use this for initialization
 	void Start () {
 		particle_states = new float[6];
 		goal_position = new float[3] {20, 7, 0};
-		weights = new float[6] {20, 10, 1, 1, 0, 10};
 		switch_time = 0;
+
+		// weights: goal, separation, alignment, cohesion, avoidance, random
+		weights = new float[6] {0.5f, 10.0f, 1, 0, 0, 0};
 
 		////position
 		for(int d=0; d < 3;d++) particle_states[d] = transform.position[d];
@@ -65,7 +67,7 @@ public class ParticleMotionScript : MonoBehaviour {
 		Array.Sort (boids, nearerBoid);
 		int neighbors_visited = 0;
 		float[] neighbor_positions = new float[max_closest_neighbors * 3];
-		float[] neighbor_directions = new float[max_closest_neighbors * 3];
+		float[] neighbor_velocities = new float[max_closest_neighbors * 3];
 		foreach (GameObject boid in boids)
 		{
 			if (boid == this.gameObject) {
@@ -75,19 +77,22 @@ public class ParticleMotionScript : MonoBehaviour {
 				break;
 			}
 
+			ParticleMotionScript otherScript = boid.GetComponent<ParticleMotionScript>();
+			float[] other_particle = otherScript.particle_states;
+
 			int neighbor_index = neighbors_visited * 3;
-			neighbor_positions[neighbor_index] = boid.transform.position.x;
-			neighbor_positions[neighbor_index + 1] = boid.transform.position.y;
-			neighbor_positions[neighbor_index + 2] = boid.transform.position.z;
-			neighbor_directions[neighbor_index] = boid.transform.forward.x;
-			neighbor_directions[neighbor_index + 1] = boid.transform.forward.y;
-			neighbor_directions[neighbor_index + 2] = boid.transform.forward.z;
+			neighbor_positions[neighbor_index] = other_particle[0];
+			neighbor_positions[neighbor_index + 1] = other_particle[1];
+			neighbor_positions[neighbor_index + 2] = other_particle[2];
+			neighbor_velocities[neighbor_index] = other_particle[3];
+			neighbor_velocities[neighbor_index + 1] = other_particle[4];
+			neighbor_velocities[neighbor_index + 2] = other_particle[5];
 			neighbors_visited++;
 		}
 
 		float dt = Time.deltaTime;
-		flock (particle_states, goal_position, neighbor_positions, neighbor_directions,
-		       neighbors_visited, weights, dt);
+		flock (particle_states, goal_position, neighbor_positions, neighbor_velocities,
+		       neighbors_visited, 5.0f, weights, dt);
 		transform.position = new Vector3 (particle_states[0], particle_states[1],
 		                                  particle_states[2]);
 		// TODO update orientation too

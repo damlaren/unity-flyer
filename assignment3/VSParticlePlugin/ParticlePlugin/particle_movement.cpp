@@ -56,16 +56,17 @@ extern "C"
 
 	/**
 	  * Model a flock of birds.
-	  * @particle_states: [x; v] for this particle.
-	  * @goal_position: [x] goal position.
+	  * @param particle_states: [x; v] for this particle.
+	  * @param goal_position: [x] goal position.
 	  * @param neighbor_positions: positions of nearest neighbors
 	  * @param neighbor_directions: directions of nearest neighbors
-	  * @weights: 6 of them, respectively for: desired motion, separation, alignment, cohesion, avoidance, randomness
-	  * @dt: timestep
+	  * @param weights: 6 of them, respectively for: desired motion, separation, alignment, cohesion, avoidance, randomness
+	  * @param max_speed: cap the speed of boids to this value
+	  * @param dt: timestep
 	  */
     const EXPORT_API void flock(float* particle_states, float* goal_position,
-		float* neighbor_positions, float* neighbor_directions, int num_neighbors,
-		float* weights, float dt)
+		float* neighbor_positions, float* neighbor_velocities, int num_neighbors,
+		float max_speed, float* weights, float dt)
     {
         float* x = &particle_states[0];
         float* v = &particle_states[3];
@@ -78,9 +79,7 @@ extern "C"
 		float desiredDirectionWeight = weights[0];
 		subtract(desiredDirection, goal_position, x, 3);
 		normalize(currentDirection, v, 3);
-		normalize(desiredDirection, desiredDirection, 3);
-		subtract(desiredDirectionDifference, desiredDirection, currentDirection, 3);
-		multiply(desiredDirectionForce, desiredDirectionDifference, desiredDirectionWeight, 3);
+		multiply(desiredDirectionForce, desiredDirection, desiredDirectionWeight, 3);
 
 		// Forces 2, 3, 4: Cohesion, Alignment, Separation
 		float separation_force[3];
@@ -92,13 +91,14 @@ extern "C"
 		zero(separation_force, 3);
 		zero(alignment_force, 3);
 		zero(cohesion_force, 3);
+
 		for (int neighbor_index = 0; neighbor_index < num_neighbors; neighbor_index++) {
 			int value_index = neighbor_index * 3;
 
 			float* neighbor_position = neighbor_positions + value_index;
-			float* neighbor_direction = neighbor_directions + value_index;
+			float* neighbor_velocity = neighbor_velocities + value_index;
 			
-			// Force 2: Separation. Keep them apart a bit
+			// Force 2: Separation. Keep distance from neighbor
 			float separation_vector[3];
 			subtract(separation_vector, x, neighbor_position, 3);
 			float separation_distance = length(separation_vector, 3);
@@ -106,7 +106,14 @@ extern "C"
 			float scaling = separation_weight / separation_distance / separation_distance; // fall off with dist^2
 			multiply(separation_vector, separation_vector, scaling, 3);
 			add(separation_force, separation_force, separation_vector, 3);
+
+			// Force 4: Cohesion; move towards local average
+			float cohesion_vector[3];
+			subtract(cohesion_vector, neighbor_position, x, 3);
+			float cohesion_distance = length(cohesion_vector, 3);
+			add(cohesion_force, cohesion_force, cohesion_vector, 3);
 		}
+		multiply(cohesion_force, cohesion_force, cohesion_weight / num_neighbors, 3);
 
 		// Force 5: Avoidance is ignored
 
@@ -121,12 +128,21 @@ extern "C"
 		float totalImpulse[3];
 		add(totalImpulse, totalImpulse, desiredDirectionForce, 3);
 		add(totalImpulse, totalImpulse, separation_force, 3);
+		add(totalImpulse, totalImpulse, cohesion_force, 3);
 		add(totalImpulse, totalImpulse, randomForce, 3);
 		multiply(totalImpulse, totalImpulse, dt, 3);
 
 		// Update velocity and position.
 		float posChange[3];
 		add(v, v, totalImpulse, 3);
+
+		// cap velocity
+		float speed = length(v, 3);
+		if (speed > max_speed) {
+			normalize(v, v, 3);
+			multiply(v, v, max_speed, 3);
+		}
+
 		multiply(posChange, v, dt, 3);
 		add(x, x, posChange, 3);
     }
