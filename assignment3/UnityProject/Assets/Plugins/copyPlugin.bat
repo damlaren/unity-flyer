@@ -1,0 +1,1 @@
+copy C:\Projects\unity-flyer\assignment3\VSParticlePlugin\Release\ParticlePlugin.dll C:\Projects\unity-flyer\assignment3\UnityProject\Assets\Plugins

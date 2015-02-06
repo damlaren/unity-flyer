@@ -5,20 +5,13 @@
 
 extern "C"
 {
-	/**
-	  * Store normalized vector vin with n entries into vout.
-	  */
-	void normalize(float *vout, float* vin, int n) {
+	/** Return length of vector. */
+	float length(const float* v, int n) {
 		float s = 0;
 		for (int d = 0; d < n; d++) {
-			s += vin[d] * vin[d];
+			s += v[d] * v[d];
 		}
-		float mag = std::sqrt(s);
-		if (mag != 0) {
-			for (int d = 0; d < n; d++) {
-				vout[d] = vin[d] / mag;
-			}
-		}
+		return std::sqrt(s);
 	}
 
 	/** Multiply vector v of length n by scalar s, store into vout. */
@@ -26,6 +19,15 @@ extern "C"
 		for (int d = 0; d < n; d++) {
 			vout[d] = vin[d] * s;
 		}
+	}
+
+	/** Store normalized vector vin with n entries into vout. */
+	void normalize(float* vout, float* vin, int n) {
+		float mag = length(vin, n);
+		if (mag == 0) {
+			mag = 1e-10f; // give it a little bit
+		}
+		multiply(vout, vin, 1.0f / mag, n);
 	}
 
 	/** Store vin + win in vout. v, w must be length n. */
@@ -45,6 +47,11 @@ extern "C"
 	/** Copy vector vin of length n to vout. */
 	void copy(float* vout, const float* vin, int n) {
 		memcpy(vout, vin, n * sizeof(float));
+	}
+
+	/** Zero out vector of length n. */
+	void zero(float* v, int n) {
+		memset(v, 0, n * sizeof(float));
 	}
 
 	/**
@@ -76,11 +83,29 @@ extern "C"
 		multiply(desiredDirectionForce, desiredDirectionDifference, desiredDirectionWeight, 3);
 
 		// Forces 2, 3, 4: Cohesion, Alignment, Separation
+		float separation_force[3];
+		float alignment_force[3];
+		float cohesion_force[3];
+		float separation_weight = weights[1];
+		float alignment_weight = weights[2];
+		float cohesion_weight = weights[3];
+		zero(separation_force, 3);
+		zero(alignment_force, 3);
+		zero(cohesion_force, 3);
 		for (int neighbor_index = 0; neighbor_index < num_neighbors; neighbor_index++) {
 			int value_index = neighbor_index * 3;
 
 			float* neighbor_position = neighbor_positions + value_index;
 			float* neighbor_direction = neighbor_directions + value_index;
+			
+			// Force 2: Separation. Keep them apart a bit
+			float separation_vector[3];
+			subtract(separation_vector, x, neighbor_position, 3);
+			float separation_distance = length(separation_vector, 3);
+			normalize(separation_vector, separation_vector, 3);
+			float scaling = separation_weight / separation_distance / separation_distance; // fall off with dist^2
+			multiply(separation_vector, separation_vector, scaling, 3);
+			add(separation_force, separation_force, separation_vector, 3);
 		}
 
 		// Force 5: Avoidance is ignored
@@ -95,6 +120,7 @@ extern "C"
 		// Add all the forces together at the end, transform to impulse.
 		float totalImpulse[3];
 		add(totalImpulse, totalImpulse, desiredDirectionForce, 3);
+		add(totalImpulse, totalImpulse, separation_force, 3);
 		add(totalImpulse, totalImpulse, randomForce, 3);
 		multiply(totalImpulse, totalImpulse, dt, 3);
 

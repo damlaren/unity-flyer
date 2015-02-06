@@ -18,7 +18,7 @@ public class ParticleMotionScript : MonoBehaviour {
 	void Start () {
 		particle_states = new float[6];
 		goal_position = new float[3] {20, 7, 0};
-		weights = new float[6] {100, 1, 1, 1, 1, 10};
+		weights = new float[6] {20, 10, 1, 1, 0, 10};
 		switch_time = 0;
 
 		////position
