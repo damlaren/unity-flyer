@@ -49,12 +49,16 @@ extern "C"
 
 	/**
 	  * Model a flock of birds.
-	  * particle_states: [x; v] for this particle.
-	  * goal_position: [x] goal position.
-	  * weights: 6 of them, respectively for: desired motion, separation, alignment, cohesion, avoidance, randomness
-	  * dt: timestep
+	  * @particle_states: [x; v] for this particle.
+	  * @goal_position: [x] goal position.
+	  * @param neighbor_positions: positions of nearest neighbors
+	  * @param neighbor_directions: directions of nearest neighbors
+	  * @weights: 6 of them, respectively for: desired motion, separation, alignment, cohesion, avoidance, randomness
+	  * @dt: timestep
 	  */
-    const EXPORT_API void flock(float* particle_states, float* goal_position, float* weights, float dt)
+    const EXPORT_API void flock(float* particle_states, float* goal_position,
+		float* neighbor_positions, float* neighbor_directions, int num_neighbors,
+		float* weights, float dt)
     {
         float* x = &particle_states[0];
         float* v = &particle_states[3];
@@ -70,6 +74,14 @@ extern "C"
 		normalize(desiredDirection, desiredDirection, 3);
 		subtract(desiredDirectionDifference, desiredDirection, currentDirection, 3);
 		multiply(desiredDirectionForce, desiredDirectionDifference, desiredDirectionWeight, 3);
+
+		// Forces 2, 3, 4: Cohesion, Alignment, Separation
+		for (int neighbor_index = 0; neighbor_index < num_neighbors; neighbor_index++) {
+			int value_index = neighbor_index * 3;
+
+			float* neighbor_position = neighbor_positions + value_index;
+			float* neighbor_direction = neighbor_directions + value_index;
+		}
 
 		// Force 5: Avoidance is ignored
 

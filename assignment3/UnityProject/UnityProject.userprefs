@@ -2,12 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ParticleMotionScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\ParticleMotionScript.cs" Line="19" Column="29" />
-      <File FileName="Assets\Scripts\SpawnerScript.cs" Line="31" Column="25" />
+      <File FileName="Assets\Scripts\ParticleMotionScript.cs" Line="56" Column="37" />
+      <File FileName="Assets\Scripts\SpawnerScript.cs" Line="21" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Projects\unity-flyer\assignment3\UnityProject\Assets\Scripts\ParticleMotionScript.cs" line="50" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
