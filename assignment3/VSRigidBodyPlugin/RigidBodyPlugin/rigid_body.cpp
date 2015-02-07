@@ -77,38 +77,18 @@ void Rigid_Body::Collide_Cube_Ground(float l)
 
         double coefficient_of_friction_static = 0.8;
 		double coefficient_of_friction_kinetic = 0.7;
-		/*
-		//vec3 vp_rel = -vp_n * (1 + coefficient_of_restitution); // aka delta_v, assuming vp_t = 0 first
-		//vec3 vp_rel = -vp_n * (1 + coefficient_of_restitution) - vp_t; // aka delta_v
-		vec3 vp_rel = -vp_n * coefficient_of_restitution * normal - vp;
-        vec3 sticking_impulse = K_inverse * vp_rel;
-		vec3 impulse = sticking_impulse;
-		
-		if ((sticking_impulse - (normal * (sticking_impulse * normal))).length() <=
-			(coef_of_friction * sticking_impulse * normal))
-		{
-			// sticking impulse is acceptable. do nothing.
-		}
-		else
-		{
-			vec3 impulse_n = (-vp_n * (1 + coefficient_of_restitution) * normal) /
-				(normal * (K * (normal - coef_of_friction * tangent)));
-			impulse = impulse_n * normal - coef_of_friction * impulse_n * tangent;
-		}
-		*/
-
-		vec3 u_rel = vp;
-		float u_rel_n = vp_n.length();
-		float c_r = coefficient_of_restitution;
-		vec3 u_new_rel = -(c_r * u_rel_n) * normal;
-		vec3 j = K_inverse * (u_new_rel - u_rel);
-		vec3 N = normal;
-		vec3 u_rel_t = u_rel - (u_rel_n * N);
-		vec3 T = u_rel_t / u_rel_t.length();
-		vec3 impulse;
 		float mu_s = coefficient_of_friction_static;
 		float mu_k = coefficient_of_friction_kinetic;
-		if ((j - ((j * N) * N)).length() <= mu_s * (j * N))
+		vec3 N = normal;
+		vec3 u_rel = vp;
+		float u_rel_n = u_rel * N;
+		vec3 u_rel_t = u_rel - (u_rel_n * N);
+		float c_r = coefficient_of_restitution;
+		vec3 u_new_rel = -(c_r * u_rel_n) * N;
+		vec3 j = K_inverse * (u_new_rel - u_rel);
+		vec3 T = u_rel_t / u_rel_t.length();
+		vec3 impulse;
+		if ((j - ((j * N) * N)).length() <= (mu_s * (j * N)))
 		{
 			// sticking impulse is correct
 			impulse = j;
@@ -116,7 +96,7 @@ void Rigid_Body::Collide_Cube_Ground(float l)
 		else
 		{
 			float jn = (-(c_r * u_rel_n) - u_rel_n) /
-				(normal * (K * (N - (mu_k * T))));
+				(N * (K * (N - (mu_k * T))));
 			impulse = (N - (mu_k * T)) * jn;
 		}
 
