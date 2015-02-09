@@ -3,14 +3,14 @@ using System.Collections;
 
 public class DroneScript : MonoBehaviour {
 
-	float speed = 25.0f;
+	float speed = 70.0f;
 	float rotationSpeed = 30.0f; // ... yaw rate, I guess
 	Vector3 wayPoint;
 	Vector3 initialPosition;
 	int killCount = 0;
 
 	void GenerateWayPoint() {
-		float range = 200.0f;
+		float range = 800.0f;
 		wayPoint = new Vector3 (Random.Range (-range, range),
 		                        Random.Range (150.0f, 200.0f),
 		                        Random.Range (-range, range));

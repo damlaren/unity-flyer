@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DroneScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="17" Column="23" />
-      <File FileName="Assets\DroneScript.cs" Line="45" Column="15" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="19" Column="13" />
+      <File FileName="Assets\DroneScript.cs" Line="6" Column="17" />
+      <File FileName="Assets\BulletScript.cs" Line="6" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

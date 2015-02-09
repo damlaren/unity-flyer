@@ -2,8 +2,11 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	
-	float speed = 30.0f; // There is only one speed: fast.
+
+	float minSpeed = 80.0f;
+	float speed = 0.0f;
+	float maxSpeed = 80.0f;
+	float acceleration = 20.0f;
 	float rotationSpeed = 60.0f; // Roll rate and pitch rate
 
 	public GameObject bulletPrefab; // Assign this prefab in the editor
@@ -11,20 +14,27 @@ public class PlayerController : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 		print ("you are dead");
+		minSpeed = 0;
+		maxSpeed = 0;
 		speed = 0;
 	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.F)) {
-			if (speed == 0) {
-				speed = 30.0f;
-			}
-			else {
-				speed = 0;
-			}
+		float da = acceleration * Time.deltaTime;
+		if (Input.GetKey (KeyCode.F)) {
+			speed += da;
 		}
-
+		else if (Input.GetKey (KeyCode.V)) {
+			speed -= da;
+		}
+		if (speed > maxSpeed) {
+			speed = maxSpeed;
+		}
+		else if (speed < minSpeed) {
+			speed = minSpeed;
+		}
+		
 		// shoot dem bullets
 		if (Input.GetKey (KeyCode.Space)) {
 			Instantiate (bulletPrefab, transform.position + transform.forward * 10.0f, transform.rotation);

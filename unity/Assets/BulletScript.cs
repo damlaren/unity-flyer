@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BulletScript : MonoBehaviour {
 
-	float speed = 60.0f;
+	float speed = 350.0f;
 	float distanceTravelled = 0;
 
 	// Use this for initialization
