@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SupportScript : MonoBehaviour {
 
-	int hp = 50;
+	public int hp = 50;
 
 	// Use this for initialization
 	void Start () {

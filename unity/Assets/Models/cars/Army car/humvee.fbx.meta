@@ -1,0 +1,116 @@
+fileFormatVersion: 2
+guid: a5c574ba789a8e24c89ed91ca2d6b6ec
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: car
+    100002: Created by Xdamnio
+    100004: frontAxle
+    100006: frontBumper
+    100008: frontLeftW
+    100010: frontRightW
+    100012: grill
+    100014: HUMVEE
+    100016: //RootNode
+    100018: RearAxle
+    100020: rearBumper
+    100022: rearLeftW
+    100024: rearRightW
+    400000: car
+    400002: Created by Xdamnio
+    400004: frontAxle
+    400006: frontBumper
+    400008: frontLeftW
+    400010: frontRightW
+    400012: grill
+    400014: HUMVEE
+    400016: //RootNode
+    400018: RearAxle
+    400020: rearBumper
+    400022: rearLeftW
+    400024: rearRightW
+    2300000: car
+    2300002: frontAxle
+    2300004: frontBumper
+    2300006: frontLeftW
+    2300008: frontRightW
+    2300010: grill
+    2300012: RearAxle
+    2300014: rearBumper
+    2300016: rearLeftW
+    2300018: rearRightW
+    3300000: car
+    3300002: frontAxle
+    3300004: frontBumper
+    3300006: frontLeftW
+    3300008: frontRightW
+    3300010: grill
+    3300012: RearAxle
+    3300014: rearBumper
+    3300016: rearLeftW
+    3300018: rearRightW
+    4300000: car
+    4300002: grill
+    4300004: frontBumper
+    4300006: rearBumper
+    4300008: frontAxle
+    4300010: frontRightW
+    4300012: frontLeftW
+    4300014: RearAxle
+    4300016: rearRightW
+    4300018: rearLeftW
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
