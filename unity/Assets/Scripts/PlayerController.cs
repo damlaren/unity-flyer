@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 	
-	float speed = 2.0f; // There is only one speed.
-	float rotationSpeed = 30.0f; // Roll rate and pitch rate
+	float speed = 30.0f; // There is only one speed: fast.
+	float rotationSpeed = 60.0f; // Roll rate and pitch rate
 
 	void Update()
 	{
