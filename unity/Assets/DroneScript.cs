@@ -8,6 +8,7 @@ public class DroneScript : MonoBehaviour {
 	Vector3 wayPoint;
 	Vector3 initialPosition;
 	int killCount = 0;
+	public GameObject target = null;
 
 	void GenerateWayPoint() {
 		float range = 800.0f;
@@ -38,8 +39,12 @@ public class DroneScript : MonoBehaviour {
 	void Update () {
 
 		// Check if waypoint is close enough
-		if ((transform.position - wayPoint).magnitude < 20.0f) {
-			GenerateWayPoint();
+		if (target == null) {
+			if ((transform.position - wayPoint).magnitude < 20.0f) {
+				GenerateWayPoint ();
+			}
+		} else {
+			wayPoint = target.transform.position;
 		}
 
 		// turn towards waypoint
