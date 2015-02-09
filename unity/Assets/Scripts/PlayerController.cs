@@ -6,6 +6,12 @@ public class PlayerController : MonoBehaviour {
 	float speed = 30.0f; // There is only one speed: fast.
 	float rotationSpeed = 60.0f; // Roll rate and pitch rate
 
+	void OnCollisionEnter(Collision collision)
+	{
+		print ("you are dead");
+		speed = 0;
+	}
+
 	void Update()
 	{
 		// Get the horizontal and vertical axis.

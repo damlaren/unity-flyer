@@ -1,10 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ParticleMotionScript.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\unity\Assets\Scripts\PlayerController.cs">
     <Files>
-      <File FileName="Assets\Scripts\SpawnerScript.cs" Line="13" Column="2" />
-      <File FileName="Assets\Scripts\ParticleMotionScript.cs" Line="81" Column="47" />
-      <File FileName="Assets\Scripts\RigidBodyMotionScript.cs" Line="6" Column="48" />
+      <File FileName="..\..\unity\Assets\Scripts\PlayerController.cs" Line="10" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
