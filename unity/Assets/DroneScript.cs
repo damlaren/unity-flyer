@@ -4,7 +4,7 @@ using System.Collections;
 public class DroneScript : MonoBehaviour {
 
 	float speed = 70.0f;
-	float rotationSpeed = 30.0f; // ... yaw rate, I guess
+	float rotationSpeed = 25.0f;
 	Vector3 wayPoint;
 	Vector3 initialPosition;
 	int killCount = 0;
