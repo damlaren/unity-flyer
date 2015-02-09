@@ -1,0 +1,145 @@
+fileFormatVersion: 2
+guid: 9ca63115a4725894fa50dab0c3203db0
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: CONTROL
+    100002: Empty
+    100004: GEAR_FW
+    100006: GEAR_R
+    100008: GLASS_1
+    100010: GLASS_2
+    100012: GLASS_3
+    100014: HUD
+    100016: INTERIOR
+    100018: MARCO_1
+    100020: MARCO_2
+    100022: PANEL
+    100024: SALPICADERO
+    100026: SEAT
+    100028: //RootNode
+    100030: TAIL
+    100032: TOBERA
+    100034: WINGS
+    400000: CONTROL
+    400002: Empty
+    400004: GEAR_FW
+    400006: GEAR_R
+    400008: GLASS_1
+    400010: GLASS_2
+    400012: GLASS_3
+    400014: HUD
+    400016: INTERIOR
+    400018: MARCO_1
+    400020: MARCO_2
+    400022: PANEL
+    400024: SALPICADERO
+    400026: SEAT
+    400028: //RootNode
+    400030: TAIL
+    400032: TOBERA
+    400034: WINGS
+    2300000: CONTROL
+    2300002: GEAR_FW
+    2300004: GEAR_R
+    2300006: GLASS_1
+    2300008: GLASS_2
+    2300010: GLASS_3
+    2300012: HUD
+    2300014: INTERIOR
+    2300016: MARCO_1
+    2300018: MARCO_2
+    2300020: PANEL
+    2300022: SALPICADERO
+    2300024: SEAT
+    2300026: TAIL
+    2300028: TOBERA
+    2300030: WINGS
+    3300000: CONTROL
+    3300002: GEAR_FW
+    3300004: GEAR_R
+    3300006: GLASS_1
+    3300008: GLASS_2
+    3300010: GLASS_3
+    3300012: HUD
+    3300014: INTERIOR
+    3300016: MARCO_1
+    3300018: MARCO_2
+    3300020: PANEL
+    3300022: SALPICADERO
+    3300024: SEAT
+    3300026: TAIL
+    3300028: TOBERA
+    3300030: WINGS
+    4300000: CONTROL
+    4300002: MARCO_1
+    4300004: GLASS_2
+    4300006: GEAR_FW
+    4300008: INTERIOR
+    4300010: TOBERA
+    4300012: MARCO_2
+    4300014: GLASS_3
+    4300016: TAIL
+    4300018: PANEL
+    4300020: GLASS_1
+    4300022: SEAT
+    4300024: WINGS
+    4300026: HUD
+    4300028: SALPICADERO
+    4300030: GEAR_R
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
