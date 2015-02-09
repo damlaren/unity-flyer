@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\AnimateScript.cs" />
      <Compile Include="Assets\BirdDragger.cs" />
+     <Compile Include="Assets\BulletScript.cs" />
      <Compile Include="Assets\DroneScript.cs" />
      <Compile Include="Assets\MenuController.cs" />
      <Compile Include="Assets\OVR\Scripts\OVRCameraRig.cs" />

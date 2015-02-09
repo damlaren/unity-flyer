@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour {
 	float speed = 30.0f; // There is only one speed: fast.
 	float rotationSpeed = 60.0f; // Roll rate and pitch rate
 
+	public GameObject bulletPrefab; // Assign this prefab in the editor
+
 	void OnCollisionEnter(Collision collision)
 	{
 		print ("you are dead");
@@ -14,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.F)) {
 			if (speed == 0) {
 				speed = 30.0f;
 			}
@@ -22,6 +24,12 @@ public class PlayerController : MonoBehaviour {
 				speed = 0;
 			}
 		}
+
+		// shoot dem bullets
+		if (Input.GetKey (KeyCode.Space)) {
+			Instantiate (bulletPrefab, transform.position + transform.forward * 10.0f, transform.rotation);
+		}
+
 		// Get the horizontal and vertical axis.
 		// By default they are mapped to the arrow keys.
 		// The value is in the range -1 to 1
