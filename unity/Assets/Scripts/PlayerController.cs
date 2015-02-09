@@ -14,6 +14,14 @@ public class PlayerController : MonoBehaviour {
 
 	void Update()
 	{
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			if (speed == 0) {
+				speed = 30.0f;
+			}
+			else {
+				speed = 0;
+			}
+		}
 		// Get the horizontal and vertical axis.
 		// By default they are mapped to the arrow keys.
 		// The value is in the range -1 to 1
